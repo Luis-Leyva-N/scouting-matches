@@ -1,14 +1,17 @@
+// Import libraries
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Import Components
+// import Matches from "./components/matches/Matches";
+import MainMenu from "./components/mainMenu/MainMenu";
 
 const Router = () => {
     return (
         <BrowserRouter>
-            <Switch>
-                <Route exact path="/">
-                    <div></div>
-                </Route>
-            </Switch>
+            <Routes>
+                <Route exact path="/" element={<MainMenu />} />
+            </Routes>
         </BrowserRouter>
     );
 };
