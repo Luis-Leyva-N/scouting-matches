@@ -1,11 +1,16 @@
 import React from "react";
-import MenuStyles from "../mainMenu/MainMenu.module.css";
+import menuStyles from "../mainMenu/MainMenu.module.css";
 
 function MainMenu() {
     return (
-        <div className={ MenuStyles.mainContainer }>
+        <div className={ menuStyles.mainContainer }>
             <h1>Menu Principal</h1>
-        </div>
+            <div className={ menuStyles.buttonContainer }>
+                {/* Add CSS and hrefs */ }
+                <a href="Teams">Teams Information</a>
+                <a href="Matches">Scout Matches</a>
+            </div>
+        </div >
     );
 }
 
