@@ -3,8 +3,9 @@ import matchesStyles from "../matches/Matches.module.css";
 
 import { keys } from "../../api/apiAuth";
 
+// Get matches for the event from TBA API
 async function getMatches() {
-    return fetch(`https://frc-api.firstinspires.org/v3.0/`, {
+    return fetch(`https://frc-api.firstinspires.org/v3.0/event/2020mxmo/matches/simple`, {
         mode: "no-cors",
         method: "GET",
         headers: {
@@ -29,7 +30,7 @@ function Matches() {
 
     return (
         <div className={ matchesStyles.mainContainer }>
-            <h1>Matches</h1>
+            <h1>Matches Prueba</h1>
         </div>
     );
 }
