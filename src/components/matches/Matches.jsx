@@ -5,12 +5,11 @@ import { keys } from "../../api/apiAuth";
 
 // Get matches for the event from TBA API
 async function getMatches() {
-    return fetch(`https://frc-api.firstinspires.org/v3.0/event/2020mxmo/matches/simple`, {
-        mode: "no-cors",
+    return fetch(`https://www.thebluealliance.com/api/v3/event/2020mxmo/matches/simple`, {
         method: "GET",
         headers: {
-            "accept": "application/json",
-            "Authorization": `Basic ${keys.frcEn}`,
+            "Accept": "application/json",
+            "X-TBA-Auth-Key": keys,
         },
     }).then((data) => data.json());
 }
