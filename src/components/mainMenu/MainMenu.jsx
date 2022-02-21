@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
 import menuStyles from "../mainMenu/MainMenu.module.css";
 
-import { getMatches, getMatchesTBA, postUpdateMatches } from "../../api/apiCalls";
+import { getMatches, getMatchesTBA, getTeamsTBA, postUpdateMatches, postUpdateTeams } from "../../api/apiCalls";
 
 function MainMenu() {
-    const [matches, setMatches] = useState();
+    const [eventData, setEventData] = useState();
 
     useEffect(() => {
         async function getData() {
             const data = await getMatches();
-            setMatches(data.count);
+            setEventData(data.count);
         }
-        if (matches === undefined) {
+        if (eventData === undefined) {
             getData();
         }
-    }, [matches]);
+    }, [eventData]);
 
     // Filter TBA matches data
     function filterMatchTeams(data) {
@@ -35,26 +35,45 @@ function MainMenu() {
         return filteredData;
     }
 
-    // Load and Refresh matches for the event
-    async function uploadData() {
-        setMatches(-1);
-        const data = await getMatchesTBA();
-        const number = data.filter(match => match.comp_level === "qm").length;
-        const filteredData = filterMatchTeams(data);
-        postUpdateMatches(filteredData);
-        setMatches(number);
+    // Filter TBA teams data
+    function filterTeams(data) {
+        let filteredData = [];
+        data.forEach(team => {
+            filteredData.push({
+                team_number: team.team_number,
+                key: team.key,
+                name: team.nickname,
+            })
+        });
+
+        filteredData.sort((a, b) => a.team_number - b.team_number);
+        return filteredData;
     }
 
-    async function downloadData() { }
+    // Load and Refresh matches for the event
+    async function uploadData() {
+        setEventData(-1);
 
-    if (matches === 0) {
+        // Upload Team Data
+        const teamData = await getTeamsTBA();
+        const filteredTeams = filterTeams(teamData);
+        postUpdateTeams(filteredTeams);
+
+        // Upload Match Data
+        const matchData = await getMatchesTBA();
+        const filteredData = filterMatchTeams(matchData);
+        postUpdateMatches(filteredData);
+        setEventData(1);
+    }
+
+    if (eventData === 0) {
         return (
             <div className={ menuStyles.mainContainer }>
                 <h1>Menu</h1>
                 <button onClick={ uploadData }>Load Regional Data</button>
             </div>
         );
-    } else if (matches === -1) {
+    } else if (eventData === -1) {
         return (
             <div className={ menuStyles.mainContainer }>
                 <h1>Menu</h1>

@@ -14,6 +14,19 @@ export async function getMatchesTBA() {
     ).then((data) => data.json());
 }
 
+export async function getTeamsTBA() {
+    return fetch(
+        `https://www.thebluealliance.com/api/v3/event/2020mxmo/teams/simple`,
+        {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "X-TBA-Auth-Key": keys,
+            },
+        }
+    ).then((data) => data.json());
+}
+
 // Get matches for the event from Overture API
 export async function getMatches() {
     return fetch(
@@ -37,6 +50,20 @@ export async function postUpdateMatches(matchesInfo) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(matchesInfo),
+        }
+    ).then((data) => data.json());
+}
+
+// update the teams for the event in the database
+export async function postUpdateTeams(teamsInfo) {
+    return fetch(
+        `http://localhost:5001/overture-scouting-8a16f/us-central1/app/api/updateTeams`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(teamsInfo),
         }
     ).then((data) => data.json());
 }
