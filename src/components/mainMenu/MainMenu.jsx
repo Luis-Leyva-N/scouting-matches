@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import menuStyles from "../mainMenu/MainMenu.module.css";
 
-import { getMatches, getMatchesTBA, getTeamsTBA, postUpdateMatches, postUpdateTeams } from "../../api/apiCalls";
+import { getMatches, getMatchesTBA, getTeamsTBA, postUpdateMatches, postUpdateTeams } from "../../api/apiMainMenuCalls";
 
 function MainMenu() {
     const [eventData, setEventData] = useState();
