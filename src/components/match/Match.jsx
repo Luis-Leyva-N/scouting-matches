@@ -1,12 +1,32 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 // import matchScoutingStyles from "./MatchScouting.module.css";
 
+import { getMatchesTeams } from "../../api/apiMatchesCalls";
+
 function Match() {
     const { matchId } = useParams();
+    const [matchTeams, setMatchTeams] = useState();
+
+    useEffect(() => {
+        async function getData() {
+            const data = await getMatchesTeams(matchId);
+            setMatchTeams(data);
+        }
+
+        getData();
+    }, [matchId]);
+
     return (
         <div>
             <h1>Match Scout { matchId }</h1>
+            { matchTeams.map(matchTeam => {
+                return (
+                    <Link key={ matchTeam } to={ matchTeam }> { matchTeam } --</Link>
+                )
+            }
+            ) }
         </div>
     );
 }
