@@ -7,7 +7,7 @@ import Matches from "./components/matches/Matches";
 import Match from "./components/match/Match";
 import Scout from "./components/scout/Scout";
 import MainMenu from "./components/mainMenu/MainMenu";
-// import Teams from "./components/teams/Teams";
+import Teams from "./components/teams/Teams";
 
 const Router = () => {
     return (
@@ -19,7 +19,7 @@ const Router = () => {
                         <Route path=":teamId" element={<Scout />} />
                     </Route>
                 </Route>
-                {/* <Route path="/Teams" element={<Teams />} /> */}
+                <Route path="/Teams" element={<Teams />} />
             </Routes>
         </BrowserRouter>
     );

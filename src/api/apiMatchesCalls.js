@@ -1,5 +1,3 @@
-// import { keys } from "./apiAuth";
-
 // Get matches for the event from Overture API
 export async function getMatches() {
     return fetch(
@@ -23,6 +21,19 @@ export async function getMatchesTeams(match_number) {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({ match_number: match_number }),
+        }
+    ).then((data) => data.json());
+}
+
+export async function updateTeamMatch(data) {
+    return fetch(
+        `http://localhost:5001/overture-scouting-8a16f/us-central1/app/api/updateTeamResults`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
         }
     ).then((data) => data.json());
 }
