@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
-import { useParams } from "react-router-dom";
+import { Link, Outlet, useParams } from "react-router-dom";
 // import matchScoutingStyles from "./MatchScouting.module.css";
 
 import { getMatchesTeams } from "../../api/apiMatchesCalls";
@@ -23,7 +22,7 @@ function Match() {
             <h1>Match Scout { matchId }</h1>
             { matchTeams.map(matchTeam => {
                 return (
-                    <Link key={ matchTeam } to={ matchTeam }> { matchTeam } --</Link>
+                    <Link key={ matchTeam } to={ matchTeam }> { matchTeam + " - " }</Link>
                 )
             })
             }

@@ -30,9 +30,9 @@ function Scout() {
         });
     }
 
-    const handleSubmit = (e) => {
+    async function handleSubmit(e) {
         e.preventDefault();
-        updateTeamMatch(matchData);
+        await updateTeamMatch(matchData);
     }
 
     return (
@@ -50,7 +50,7 @@ function Scout() {
                 </label>
                 <label>
                     Dispara en Autonomo
-                    <input type="checkbox" name="disparaAutonomo" onChange={ handleChange } checked={ matchData.disparaAutonomo } /> Arriba
+                    <input type="checkbox" name="disparaAutonomo" onChange={ handleChange } checked={ matchData.disparaAutonomo } />
                 </label>
                 <label>
                     Anota

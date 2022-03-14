@@ -8,6 +8,7 @@ import Match from "./components/match/Match";
 import Scout from "./components/scout/Scout";
 import MainMenu from "./components/mainMenu/MainMenu";
 import Teams from "./components/teams/Teams";
+import TeamsMatches from "./components/teamsMatches/TeamsMatches";
 
 const Router = () => {
     return (
@@ -19,7 +20,9 @@ const Router = () => {
                         <Route path=":teamId" element={<Scout />} />
                     </Route>
                 </Route>
-                <Route path="/Teams" element={<Teams />} />
+                <Route path="Teams" element={<Teams />}>
+                    <Route path=":teamId" element={<TeamsMatches />} />
+                </Route>
             </Routes>
         </BrowserRouter>
     );
