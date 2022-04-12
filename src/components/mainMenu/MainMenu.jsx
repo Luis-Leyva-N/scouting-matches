@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Stack, Button, Image } from "react-bootstrap";
-import Loading from "../loading/loading";
+import { Loading } from "../loading/loading";
 import Logo from "./logoOverture.png";
 
 import { getMatches, getMatchesTBA, getTeamsTBA, postUpdateMatches, postUpdateTeams } from "../../api/apiMainMenuCalls";

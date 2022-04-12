@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
-import matchesStyles from "../matches/Matches.module.css";
 import { getMatches } from "../../api/apiMatchesCalls";
+import { LoadingAlt } from "../loading/loading";
 
 function Matches() {
 	const [match, setMatch] = useState();
@@ -20,15 +20,15 @@ function Matches() {
 	}, [match]);
 
 	if (match === undefined) {
-		return <div>Loading...</div>
+		return <LoadingAlt />
 	} else {
 		return (
-			<div className={ matchesStyles.mainContainer }>
+			<div>
 				<h1>Matches</h1>
-				<div className={ matchesStyles.matchContainer }>
+				<div>
 					{ match.map(match => {
 						return (
-							<Link key={ match } to={ "qm-" + match } className={ matchesStyles.matchNumber }>{ match }</Link>
+							<Link key={ match } to={ "qm-" + match } >{ match }</Link>
 						)
 					}) }
 				</div>
