@@ -70,21 +70,21 @@ function MainMenu() {
 
 	function renderEventData() {
 		if (eventData === 0) {
-			return <Button variant="primary" className="col-md-5 col-xs-6 mx-auto" onClick={ uploadData }>Load Regional Data</Button>
+			return <Button variant="primary" className="col-md-5 col-6 mx-auto" onClick={ uploadData }>Load Regional Data</Button>
 		} else if (eventData === -1) {
 			return <Loading />
 		} else {
 			return (
 				<>
-					<Button variant="primary" href="Matches" className="col-md-6 mx-auto">Matches</Button>
-					<Button variant="primary" href="Teams" className="col-md-6 mx-auto">Teams Information</Button>
+					<Button variant="primary" href="Matches" className="col-md-5 col-6 mx-auto">Matches</Button>
+					<Button variant="primary" href="Teams" className="col-md-5 col-6 mx-auto">Teams Information</Button>
 				</>
 			);
 		}
 	}
 
 	return (
-		<Stack gap={ 2 } className="col-md-3 col-xs-6 mx-auto">
+		<Stack gap={ 2 } className="col-md-3 mx-auto">
 			<Image src={ Logo } alt="Overture Logo" />
 			<h1 className="text-center">Overture Scouting App</h1>
 			{ renderEventData() }
