@@ -9,10 +9,12 @@ import Scout from "./components/scout/Scout";
 import MainMenu from "./components/mainMenu/MainMenu";
 import Teams from "./components/teams/Teams";
 import TeamsMatches from "./components/teamsMatches/TeamsMatches";
+import NavigationBar from "./components/navigationBar/NavigationBar";
 
 const Router = () => {
     return (
         <BrowserRouter>
+            <NavigationBar />
             <Routes>
                 <Route exact path="/" element={<MainMenu />} />
                 <Route path="Matches" element={<Matches />}>
