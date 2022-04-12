@@ -77,8 +77,8 @@ function MainMenu() {
 		} else {
 			return (
 				<>
-					<Button variant="primary" href="Teams" className="col-md-6 mx-auto">Teams Information</Button>
 					<Button variant="primary" href="Matches" className="col-md-6 mx-auto">Matches</Button>
+					<Button variant="primary" href="Teams" className="col-md-6 mx-auto">Teams Information</Button>
 				</>
 			);
 		}
