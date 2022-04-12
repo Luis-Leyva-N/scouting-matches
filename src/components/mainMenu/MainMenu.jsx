@@ -69,7 +69,6 @@ function MainMenu() {
 	}
 
 	function renderEventData() {
-		console.log(eventData);
 		if (eventData === 0) {
 			return <Button variant="primary" className="col-md-5 col-xs-6 mx-auto" onClick={ uploadData }>Load Regional Data</Button>
 		} else if (eventData === -1) {
