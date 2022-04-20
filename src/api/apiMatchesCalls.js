@@ -1,7 +1,7 @@
 // Get matches for the event from Overture API
 export async function getMatches() {
     return fetch(
-        `http://localhost:5001/overture-scouting-8a16f/us-central1/app/api/getMatches`,
+        `https://us-central1-overture-scouting-8a16f.cloudfunctions.net/app/api/getMatches`,
         {
             method: "GET",
             headers: {
@@ -14,7 +14,7 @@ export async function getMatches() {
 // Get Matches Teams for the event from Overture API
 export async function getMatchesTeams(match_number) {
     return fetch(
-        `http://localhost:5001/overture-scouting-8a16f/us-central1/app/api/getMatchesTeams`,
+        `https://us-central1-overture-scouting-8a16f.cloudfunctions.net/app/api/getMatchesTeams`,
         {
             method: "POST",
             headers: {
@@ -27,7 +27,7 @@ export async function getMatchesTeams(match_number) {
 
 export async function updateTeamMatch(data) {
     return fetch(
-        `http://localhost:5001/overture-scouting-8a16f/us-central1/app/api/updateTeamResults`,
+        `https://us-central1-overture-scouting-8a16f.cloudfunctions.net/app/api/updateTeamResults`,
         {
             method: "POST",
             headers: {

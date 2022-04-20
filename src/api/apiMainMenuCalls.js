@@ -3,7 +3,7 @@ import { keys } from "./apiAuth";
 // Get matches for the event from TBA API
 export async function getMatchesTBA() {
     return fetch(
-        `https://www.thebluealliance.com/api/v3/event/2020mxmo/matches/simple`,
+        `https://www.thebluealliance.com/api/v3/event/2022new/matches/simple`,
         {
             method: "GET",
             headers: {
@@ -16,7 +16,7 @@ export async function getMatchesTBA() {
 
 export async function getTeamsTBA() {
     return fetch(
-        `https://www.thebluealliance.com/api/v3/event/2020mxmo/teams/simple`,
+        `https://www.thebluealliance.com/api/v3/event/2022new/teams/simple`,
         {
             method: "GET",
             headers: {
@@ -30,7 +30,7 @@ export async function getTeamsTBA() {
 // Get matches for the event from Overture API
 export async function getMatches() {
     return fetch(
-        `http://localhost:5001/overture-scouting-8a16f/us-central1/app/api/matchNumbers`,
+        `https://us-central1-overture-scouting-8a16f.cloudfunctions.net/app/api/matchNumbers`,
         {
             method: "GET",
             headers: {
@@ -43,7 +43,7 @@ export async function getMatches() {
 // Update the matches for the event in the database
 export async function postUpdateMatches(matchesInfo) {
     return fetch(
-        `http://localhost:5001/overture-scouting-8a16f/us-central1/app/api/updateMatches`,
+        `https://us-central1-overture-scouting-8a16f.cloudfunctions.net/app/api/updateMatches`,
         {
             method: "POST",
             headers: {
@@ -57,7 +57,7 @@ export async function postUpdateMatches(matchesInfo) {
 // update the teams for the event in the database
 export async function postUpdateTeams(teamsInfo) {
     return fetch(
-        `http://localhost:5001/overture-scouting-8a16f/us-central1/app/api/updateTeams`,
+        `https://us-central1-overture-scouting-8a16f.cloudfunctions.net/app/api/updateTeams`,
         {
             method: "POST",
             headers: {

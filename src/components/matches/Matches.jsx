@@ -27,14 +27,11 @@ function Matches() {
 		return (
 			<>
 				<MediaQuery maxWidth={ 450 }>
-					<Container className="mt-2" style={ {
-						// alignItems: "flex-start",
-						// justifyContent: "space-evenly",
-					} }>
+					<Container className="mt-2">
 						<Row>
 							<Col xs={ 6 }>
 								<Dropdown>
-									<Dropdown.Toggle id="dropdown-button-dark-example1" variant="secondary">
+									<Dropdown.Toggle variant="secondary">
 										Matches
 									</Dropdown.Toggle>
 									<Dropdown.Menu style={ {
@@ -58,7 +55,7 @@ function Matches() {
 					<Stack gap={ 2 } direction="horizontal" style={ {
 						alignItems: "flex-start",
 					} }>
-						<Nav className="flex-column" style={ {
+						<Nav className="flex-column mr-2" style={ {
 							maxHeight: "94vh",
 							overflowY: "auto",
 							flexWrap: "nowrap",

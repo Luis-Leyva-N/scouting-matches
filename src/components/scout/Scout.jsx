@@ -1,26 +1,32 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { updateTeamMatch } from "../../api/apiMatchesCalls";
-import { Form, Button, Container, Row, Col, Stack } from "react-bootstrap";
+import { Form, Button, Container, Row, Col, Stack, Modal } from "react-bootstrap";
 
 function Scout() {
 	const { matchId, teamId } = useParams();
+	const [show, setShow] = useState(false);
 	const [matchData, setMatchData] = useState({
-		matchId: matchId,
-		teamId: teamId,
+		matchId: "",
+		teamId: "",
 		empiezaPelota: false,
 		mueveAutonomo: false,
-		disparaAutonomo: false,
-		anotaAutonomo: false,
+		cantidadAutonomo: 0,
 		anotaPelotasAutonomo: 0,
-		humanPlayerAnota: false,
+		dondeAnotaAutonomo: "sinDatos",
 		mueveTeleoperado: false,
 		disparaTeleoperado: "sinDatos",
+		cantidadDisparosTeleoperado: 0,
 		anotaTeleoperadoArriba: 0,
 		anotaTeleoperadoAbajo: 0,
 		escala: "sinDatos",
 		nivelAvance: "sinDatos",
 	});
+
+	const handleClose = () => {
+		setShow(false);
+	}
+	const handleShow = () => setShow(true);
 
 	const handleChange = (e) => {
 		const value =
@@ -33,7 +39,7 @@ function Scout() {
 
 	async function handleSubmit(e) {
 		e.preventDefault();
-		await updateTeamMatch(matchData);
+		await updateTeamMatch({ matchData, matchId, teamId });
 	}
 
 	return (
@@ -52,13 +58,20 @@ function Scout() {
 										<h2>Autonomous</h2>
 										<Form.Check type="switch" label="Empieza con pelota" name="empiezaPelota" onChange={ handleChange } checked={ matchData.empiezaPelota } />
 										<Form.Check type="switch" label="Se mueve" name="mueveAutonomo" onChange={ handleChange } checked={ matchData.mueveAutonomo } />
-										<Form.Check type="switch" label="Dispara en Autonomo" name="disparaAutonomo" onChange={ handleChange } checked={ matchData.disparaAutonomo } />
-										<Form.Check type="switch" label="Anota" name="anotaAutonomo" onChange={ handleChange } checked={ matchData.anotaAutonomo } />
-										<Form.Check type="switch" label="Human Player Anota" name="humanPlayerAnota" onChange={ handleChange } checked={ matchData.humanPlayerAnota } />
+										<Form.Group>
+											<Form.Label>Cuantas pelotas dispara</Form.Label>
+											<input type="number" name="cantidadAutonomo" onChange={ handleChange } value={ matchData.cantidadAutonomo } />
+										</Form.Group>
 										<Form.Group>
 											<Form.Label>Cuantas pelotas anota</Form.Label>
 											<input type="number" name="anotaPelotasAutonomo" onChange={ handleChange } value={ matchData.anotaPelotasAutonomo } />
 										</Form.Group>
+										<Form.Select name="dondeAnotaAutonomo" onChange={ handleChange } value={ matchData.dondeAnotaAutonomo }>
+											<option >Anota - Arriba/Abajo</option>
+											<option value={ "Arriba" }> Arriba </option>
+											<option value={ "Abajo" }> Abajo </option>
+											<option value={ "Ambos" }> Ambos </option>
+										</Form.Select>
 									</Stack>
 								</Col>
 								<Col>
@@ -66,11 +79,15 @@ function Scout() {
 										<h2>Teleop</h2>
 										<Form.Check type="switch" label="Se movio" name="mueveTeleoperado" onChange={ handleChange } checked={ matchData.mueveTeleoperado } />
 										<Form.Select name="disparaTeleoperado" onChange={ handleChange } value={ matchData.disparaTeleoperado }>
-											<option >Dispara</option>
+											<option >Dispara - Arriba/Abajo</option>
 											<option value={ "Arriba" }> Arriba </option>
 											<option value={ "Abajo" }> Abajo </option>
 											<option value={ "Ambos" }> Ambos </option>
 										</Form.Select>
+										<Form.Group>
+											<input type="number" name="cantidadDisparosTeleoperado" onChange={ handleChange } value={ matchData.cantidadDisparosTeleoperado } />
+											Cuantas pelotas dispara total
+										</Form.Group>
 										<Form.Group>
 											<input type="number" name="anotaTeleoperadoArriba" onChange={ handleChange } value={ matchData.anotaTeleoperadoArriba } />
 											Cuantas pelotas anoto arriba
@@ -105,12 +122,23 @@ function Scout() {
 							</Row>
 							<Row className="mt-4 mb-4">
 								<h2>Submit</h2>
-								<Button type="submit" >Submit</Button>
+								<Button type="submit" onClick={ handleShow } >Submit</Button>
 							</Row>
 						</Container>
 					</Form>
 				</Container >
 			</Col>
+			<Modal show={ show } onHide={ handleClose }>
+				<Modal.Header closeButton>
+					<Modal.Title>Datos Enviados</Modal.Title>
+				</Modal.Header>
+				<Modal.Body>Datos enviados, no dar click en submit otra vez</Modal.Body>
+				<Modal.Footer>
+					<Button variant="primary" onClick={ handleClose }>
+						Close
+					</Button>
+				</Modal.Footer>
+			</Modal>
 		</>
 	);
 }
